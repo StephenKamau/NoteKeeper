@@ -4,7 +4,11 @@
     tools:context="com.example.notekeeper.NoteActivity">
     <item
         android:id="@+id/action_email"
-        android:orderInCategory="100"
+        android:orderInCategory="101"
         android:title="@string/action_email"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_cancel"
+        android:orderInCategory="100"
+        android:title="@string/cancel_note" />
 </menu>

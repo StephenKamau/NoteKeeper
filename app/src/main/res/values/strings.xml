@@ -2,4 +2,5 @@
     <string name="app_name">Note Keeper</string>
     <string name="action_email">Send as Email</string>
     <string name="edit_note">Edit Note</string>
+    <string name="cancel_note">Cancel</string>
 </resources>
