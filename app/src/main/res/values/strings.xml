@@ -3,4 +3,5 @@
     <string name="action_email">Send as Email</string>
     <string name="edit_note">Edit Note</string>
     <string name="cancel_note">Cancel</string>
+    <string name="next_note">Next</string>
 </resources>
