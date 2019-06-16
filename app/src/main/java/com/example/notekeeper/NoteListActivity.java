@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,8 +15,9 @@ import android.widget.ListView;
 import java.util.List;
 
 public class NoteListActivity extends AppCompatActivity {
+    private NoteRecyclerAdapter mNoteRecyclerAdapter;
 
-    private ArrayAdapter<NoteInfo> mNoteInfoArrayAdapter;
+    //private ArrayAdapter<NoteInfo> mNoteInfoArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +33,19 @@ public class NoteListActivity extends AppCompatActivity {
                 startActivity(new Intent(NoteListActivity.this, NoteActivity.class));
             }
         });
-        
+
         initializeDisplayContent();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mNoteInfoArrayAdapter.notifyDataSetChanged();
+        //mNoteInfoArrayAdapter.notifyDataSetChanged();
+        mNoteRecyclerAdapter.notifyDataSetChanged();
     }
 
     private void initializeDisplayContent() {
-        final ListView notes = findViewById(R.id.list_notes);
+        /*final ListView notes = findViewById(R.id.list_notes);
         List<NoteInfo> m_notes = DataManager.getInstance().getNotes();
         mNoteInfoArrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, m_notes);
         notes.setAdapter(mNoteInfoArrayAdapter);
@@ -55,5 +59,14 @@ public class NoteListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        */
+        final RecyclerView recyclerNotes = findViewById(R.id.list_notes);
+        final LinearLayoutManager notesLayoutManager = new LinearLayoutManager(this);
+        recyclerNotes.setLayoutManager(notesLayoutManager);
+
+        List<NoteInfo> notes = DataManager.getInstance().getNotes();
+        mNoteRecyclerAdapter = new NoteRecyclerAdapter(this, notes);
+        recyclerNotes.setAdapter(mNoteRecyclerAdapter);
+
     }
 }
